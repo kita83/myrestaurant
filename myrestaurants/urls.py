@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, UpdateView
 import myrestaurants
 from myrestaurants.forms import RestaurantForm, DishForm
 from myrestaurants.models import Restaurant, Dish
-from myrestaurants.views import RestaurantDetail, RestaurantCreate, DishCreate
+from myrestaurants.views import RestaurantDetail, RestaurantCreate, DishCreate, RestaurantUpdate, DishUpdate
 
 urlpatterns = [
     # List latest 5 restaurants: /myrestaurants/
@@ -38,10 +38,7 @@ urlpatterns = [
 
     # Edit restaurant details, ex.: /myrestaurants/restaurants/1/edit/
     url(r'^restaurants/(?P<pk>\d+)/edit/$',
-        UpdateView.as_view(
-            model=Restaurant,
-            template_name='myrestaurants/form.html',
-            form_class=RestaurantForm),
+        RestaurantUpdate.as_view(),
         name='restaurant_edit'),
 
     # Create a restaurant dish, ex.: /myrestaurants/restaurants/1/dishes/create/
@@ -51,10 +48,7 @@ urlpatterns = [
 
     # Edit restaurant dish details, ex.: /myrestaurants/restaurants/1/dishes/1/edit/
     url(r'^restaurants/(?P<pkr>\d+)/dishes/(?P<pk>\d+)/edit/$',
-        UpdateView.as_view(
-            model=Dish,
-            template_name='myrestaurants/form.html',
-            form_class=DishForm),
+        DishUpdate.as_view(),
         name='dish_edit'),
 
     # Create a restaurant review, ex.: /myrestaurants/restaurants/1/reviews/create/

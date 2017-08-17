@@ -2,7 +2,11 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <head>
 <link rel="stylesheet" href="{% static 'style/base.css' %}" />
 <title>{% block title %}MyRestaurants by MyRecommendations.org{% endblock %}</title>
@@ -10,26 +14,43 @@
 
 <body>
 
-<div id="header">
-  {% block header %}
-  {% if user.username %}<p>User {{ user.username }}</p>
-  {% else %}<p><a href="/login/">Sign in</a></p>{% endif %}
-  {% endblock %}
+<div id="header" class="container">
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'myrestaurants:restaurant_list' %}">MyRestaurant</a>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      {% block header %}
+      {% if user.username %}<p>User {{ user.username }}</p>
+      {% else %}<p><a href="/login/">Sign in</a></p>{% endif %}
+      {% endblock %}
+    </div>
+  </nav>
 </div>
 
-<div id="sidebar">
-  {% block sidebar %}<ul><li><a href="/myrestaurants">Home</a></li></ul>{% endblock %}
+<div id="sidebar" class="container">
+  <ul class="breadcrumb" style="padding:0 20px">
+    <li class="active">Home</li>
+    <!--<li>Detail</li>-->
+  </ul>
 </div>
+<!--<div id="sidebar" class="container">-->
+  <!--{% block sidebar %}<ul><li><a href="/myrestaurants">Home</a></li></ul>{% endblock %}-->
+<!--</div>-->
 
-<div id="content">
+<div id="content" class="container">
   {% block content %}
   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
   {% endblock %}
 </div>
 
-<div id="footer">
+<div id="footer" class="container">
   {% block footer %}{% endblock %}
 </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 </body>
 
