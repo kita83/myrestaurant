@@ -4,7 +4,7 @@
 <div class="container" style="padding:20px 0">
   <form method="post" enctype="multipart/form-data" action="">
     {% csrf_token %}
-    {{ form }}
+    {% bootstrap_form form %}
     <div class="form-group text-right" style="padding:20px 0">
       <input type="submit" value="Submit" class="btn btn-primary"/>
     </div>

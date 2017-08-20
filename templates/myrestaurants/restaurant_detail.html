@@ -31,27 +31,35 @@
 </ul>
 
 <h3>Reviews</h3>
-
-<table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>Rating</th>
-      <th>Comment</th>
-      <th>User</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for review in restaurant.restaurantreview_set.all %}
-    <tr>
-      <td>{{ review.rating }} star{{ review.rating|pluralize }}</td>
-      <td>{{ review.comment }}</td>
-      <td>{{ review.user }}</td>
-      <td>{{ review.date }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<!--# Todo if文件数を取得する-->
+{% if restaurant.restaurantreview_set.all != 0 %}
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Rating</th>
+        <th>Comment</th>
+        <th>User</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in restaurant.restaurantreview_set.all %}
+      <tr>
+        <td>{% if review.rating == 1%}{% bootstrap_icon "star" %}
+        {% elif review.rating == 2%}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}
+        {% elif review.rating == 3%}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}
+        {% elif review.rating == 4%}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}
+        {% elif review.rating == 5%}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}{% bootstrap_icon "star" %}{% endif %}</td>
+        <td>{{ review.comment }}</td>
+        <td>{{ review.user }}</td>
+        <td>{{ review.date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>Please post the review.</p>
+{% endif %}
 
 <div class="panel panel-primary">
   <div class="panel-heading">
