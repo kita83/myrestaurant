@@ -26,7 +26,7 @@ class Dish(models.Model):
     price = models.DecimalField('Euro amount', max_digits=8, decimal_places=2, blank=True, null=True)
     user = models.ForeignKey(User, default=1)
     date = models.DateField(default=date.today)
-    image = models.ImageField(upload_to="myrestaurants", blank=True, null=True)
+    image = models.ImageField(upload_to="media/", blank=True, null=True)
     restaurant = models.ForeignKey(Restaurant, null=True, related_name='dishes')
 
     def __unicode__(self):

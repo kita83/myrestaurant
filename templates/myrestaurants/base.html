@@ -8,15 +8,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+<!-- CustomBootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/my_bootstrap.css' %}">
+
 <title>{% block title %}MyRestaurants by MyRecommendations.org{% endblock %}</title>
 </head>
 
 <body>
 
 <div id="header" class="container">
-  <nav class="navbar navbar-default">
+  {% if messages %}
+  {% bootstrap_messages messages %}
+  {% endif %}
+  <nav class="navbar navbar-light" style="background-color: #f7a831;">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'myrestaurants:restaurant_list' %}">MyRestaurant</a>
+      <a style="color: black" class="navbar-brand" href="{% url 'myrestaurants:restaurant_list' %}">MyRestaurant</a>
     </div>
     <div class="nav navbar-nav navbar-right">
       {% block header %}

@@ -24,6 +24,14 @@ class RestaurantForm(ModelForm):
 
 
 class DishForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DishForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['rows'] = 1
+        self.fields['description'].widget.attrs['rows'] = 3
+        self.fields['description'].widget.attrs['size'] = 10
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+
     class Meta:
         model = Dish
         exclude = ('user', 'date', 'restaurant',)

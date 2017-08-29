@@ -1,0 +1,23 @@
+@media (min-width: 1200px) {
+  .container {
+    width: 980px;
+    margin: auto;
+  }
+  .form-container {
+    width: 600px;
+    margin: auto;
+  }
+}
+
+.nav {
+    padding-right: 30px;
+    padding-top: 15px;
+}
+
+.address {
+    text-align: right;
+}
+
+.dish-image {
+    width: 50%;
+}

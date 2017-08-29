@@ -27,6 +27,8 @@ class RestaurantCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        name = form.cleaned_data['name']
+        messages.success(self.request, '"%s"を追加しました' % name)
         return super(RestaurantCreate, self).form_valid(form)
 
 

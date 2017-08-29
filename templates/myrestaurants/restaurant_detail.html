@@ -1,5 +1,5 @@
 {% extends "myrestaurants/base.html" %}
-
+{% load static %}
 {% block content %}
 <h1>
   {{ restaurant.name }}
@@ -7,12 +7,8 @@
     <a class="btn btn-default btn-xs" href="{% url 'myrestaurants:restaurant_edit' restaurant.id %}">edit</a>
   {% endif %}
 </h1>
-
-<h2>Address:</h2>
-
 <p>
-  {{ restaurant.street }}, {{ restaurant.number }} <br/>
-  {{ restaurant.zipcode }} {{ restaurant.city }} <br/>
+  {{ restaurant.street }}, {{ restaurant.number }} {{ restaurant.zipcode }} {{ restaurant.city }} <br/>
   {{ restaurant.stateOfProvince }} ({{ restaurant.country }})
 </p>
 
@@ -21,6 +17,17 @@
     <a class="btn btn-default btn-xs" href="{% url 'myrestaurants:dish_create' restaurant.id %}">add</a>
   {% endif %}
 </h2>
+<table class="table">
+  <tr>
+    {% for img in "12345" %}
+      <td>
+        <img class="dish-image img-thumbnail" src="{% static 'media/akabeko.png' %}" alt="akabeko" width="180px"/>
+        <!--<img class="dish-image img-thumbnail" src="media/akabeko.png" alt="akabeko" width="180px"/>-->
+        <p>comment</p>
+      </td>
+    {% endfor %}
+  </tr>
+</table>
 
 <ul>
   {% for dish in restaurant.dishes.all %}
@@ -63,7 +70,7 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3>Add Review</h3>
+    <h4>Add Review</h4>
   </div>
   <div class="panel-body">
     <form action="{% url 'myrestaurants:review_create' restaurant.id %}" method="post">
